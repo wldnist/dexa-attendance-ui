@@ -1,33 +1,15 @@
 import { useState, useEffect } from "react";
 
 import { Link } from "components";
-import { profileService } from "services";
 
 export default Index;
 
 function Index({ data }) {
-  console.log(data);
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
     setUsers(data);
   }, []);
-
-  //   function deleteUser(id) {
-  //     profileService.delete(id).then(() => {
-  //       setUsers(data);
-  //     });
-  //   }
-
-  //   const deleteUser = async (id) => {
-  //     const Res = await fetch(`http://localhost:3002/profiles/${id}`, {
-  //       method: "delete",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     setUsers(data);
-  //   };
 
   const getAll = async () => {
     const res = await fetch("http://localhost:3002/profiles");
@@ -39,20 +21,9 @@ function Index({ data }) {
   const deleteUser = async (id) => {
     await fetch("http://localhost:3002/profiles/" + id, {
       method: "DELETE",
-      headers: [
-        {
-          key: "Content-Type",
-          value: "application/json",
-        },
-        {
-          key: "Access-Control-Allow-Origin",
-          value: "http://localhost:3002",
-        },
-        {
-          key: "Access-Control-Allow-Headers",
-          value: "Content-Type, Authorization, X-Requested-With",
-        },
-      ],
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     getAll();
   };
