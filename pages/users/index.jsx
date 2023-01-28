@@ -61,7 +61,7 @@ function Index({ data }) {
                   </Link>
                   <button
                     onClick={() => deleteUser(user.id)}
-                    className="btn btn-sm btn-danger btn-delete-user"
+                    className="btn btn-sm btn-danger btn-delete"
                     disabled={user.isDeleting}
                   >
                     {user.isDeleting ? (

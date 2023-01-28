@@ -5,12 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 import { Link } from "components";
-import { alertService } from "services";
+import { alertService, profileService } from "services";
 
 export { AddEdit };
 
 function AddEdit(props) {
-  const user = props?.data;
+  const user = props?.data?.profile;
   const isAddMode = !user;
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -51,13 +51,8 @@ function AddEdit(props) {
   }
 
   async function createUser(data) {
-    await fetch("http://localhost:3002/profiles", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    return await profileService
+      .create(data)
       .then(() => {
         alertService.success("User added", { keepAfterRouteChange: true });
         router.push("/users");
@@ -66,13 +61,8 @@ function AddEdit(props) {
   }
 
   async function updateUser(id, data) {
-    await fetch("http://localhost:3002/profiles/" + id, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    return await profileService
+      .update(id, data)
       .then(() => {
         alertService.success("User updated", { keepAfterRouteChange: true });
         router.push("/users");

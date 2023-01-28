@@ -1,4 +1,4 @@
-import { AddEdit } from 'components/users';
+import { AddEdit } from 'components/profiles';
 import { apiUrlProfileSvc } from 'config';
 
 export default AddEdit;

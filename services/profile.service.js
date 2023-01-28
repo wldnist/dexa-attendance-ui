@@ -9,25 +9,25 @@ export const profileService = {
     delete: _delete
 };
 
-const baseUrl = `${apiUrlProfileSvc}/profiles`;
+const baseUrl = `${apiUrlProfileSvc}`;
 
-function list() {
-    return fetchWrapperApi.get(baseUrl);
+function list(params) {
+    return fetchWrapperApi.get(baseUrl, params);
 }
 
-function get(id) {
-    return fetchWrapperApi.get(`${baseUrl}/${id}`);
+function get(id, params) {
+    return fetchWrapperApi.get(`${baseUrl}/${id}`, params);
 }
 
-function create(params) {
-    return fetchWrapperApi.post(baseUrl, params);
+function create(params, body) {
+    return fetchWrapperApi.post(baseUrl, params, body);
 }
 
-function update(id, params) {
-    return fetchWrapperApi.put(`${baseUrl}/${id}`, params);
+function update(id, params, body) {
+    return fetchWrapperApi.put(`${baseUrl}/${id}`, params, body);
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
-function _delete(id) {
-    return fetchWrapperApi.delete(`${baseUrl}/${id}`);
+function _delete(id, params) {
+    return fetchWrapperApi.delete(`${baseUrl}/${id}`, params);
 }

@@ -2,10 +2,21 @@ a { cursor: pointer; }
 
 .app-container {
     min-height: 350px;
+    min-width: fit-content;
 }
 
-.btn-delete-user {
+.btn-delete {
     width: 40px;
     text-align: center;
     box-sizing: content-box;
+}
+
+.col-max {
+    width: 50%;
+}
+  
+@media screen and (max-width: 700px) {
+    .col-max {
+        width: 100%;
+    }
 }
