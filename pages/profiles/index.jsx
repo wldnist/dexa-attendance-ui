@@ -20,18 +20,6 @@ function Index({ data }) {
     setProfiles(data);
   };
 
-  // const list = async () => {
-  //   const res = await profileService
-  //   .list()
-  //   .then(() => {
-  //     alertService.success("get list success", { keepAfterRouteChange: true });
-  //   })
-  //   .catch(alertService.error);
-  //   const data = await res.json();
-
-  //   setProfiles(data);
-  // };
-
   async function deleteProfile(id) {
     await profileService
       .delete(id, {})
@@ -43,16 +31,6 @@ function Index({ data }) {
       .catch(alertService.error);
     list();
   }
-
-  // const deleteUser = async (id) => {
-  //   await fetch("http://localhost:3002/profiles/" + id, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   list();
-  // };
 
   return (
     <div>

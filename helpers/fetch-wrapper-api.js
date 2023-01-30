@@ -5,13 +5,18 @@ export const fetchWrapperApi = {
     delete: _delete
 };
 
-function get(url, params) {
+function get(serviceUrl, params) {
+    var url = new URL(serviceUrl);
+    if (JSON.stringify(params) !== '{}') {
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+    }
+
     const requestOptions = {
-        method: 'GET',
-        params: JSON.stringify(params)
+        method: 'GET'
     };
+    console.log("requestOptions:",requestOptions);
     const a = fetch(url, requestOptions).then(handleResponse);
-    console.log(a);
+    console.log("a:",a);
     return a;
 }
 
