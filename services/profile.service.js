@@ -6,7 +6,8 @@ export const profileService = {
     get,
     create,
     update,
-    delete: _delete
+    delete: _delete,
+    login
 };
 
 const baseUrl = `${apiUrlProfileSvc}`;
@@ -30,4 +31,8 @@ function update(id, params, body) {
 // prefixed with underscored because delete is a reserved word in javascript
 function _delete(id, params) {
     return fetchWrapperApi.delete(`${baseUrl}/${id}`, params);
+}
+
+function login(params, body) {
+    return fetchWrapperApi.post(`${baseUrl}/login`, params, body);
 }

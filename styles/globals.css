@@ -1,7 +1,7 @@
 a { cursor: pointer; }
 
 .app-container {
-    min-height: 350px;
+    min-height: 650px;
     min-width: fit-content;
 }
 

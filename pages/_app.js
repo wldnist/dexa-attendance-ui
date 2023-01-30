@@ -1,34 +1,46 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import 'styles/globals.css';
-import { Nav, Alert } from 'components';
+import "styles/globals.css";
+import { Nav, Alert, NavUser } from "components";
+import { useRouter } from "next/router";
 
 export default App;
 
 function App({ Component, pageProps }) {
-    return (
-        <>
-            <Head>
-                <title>DEXA - WFH Attendance App</title>
+  const { asPath } = useRouter();
 
-                {/* bootstrap css */}
-                <link href="//netdna.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-            </Head>
+  let nav;
+  if (asPath && asPath != "/account/login" ) {
+    if (asPath != "/user" && asPath != "/user/profile") {
+        nav = <Nav />;
+    } else {
+        nav = <NavUser />;
+    }
+  }
 
-            <div className="app-container bg-light">
-                <Nav />
-                <Alert />
-                <div className="container pt-4 pb-4">
-                    <Component {...pageProps} />
-                </div>
-            </div>
+  return (
+    <>
+      <Head>
+        <title>DEXA - WFH Attendance App</title>
 
-            {/* credits */}
-            <div className="text-center mt-4">
-                <p>
-                    DEXA - WFH Attendance App @2023
-                </p>
-            </div>
-        </>
-    );
+        <link
+          href="//netdna.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          rel="stylesheet"
+        />
+      </Head>
+
+      <div className="app-container bg-light">
+        {nav}
+
+        <Alert />
+        <div className="container pt-4 pb-4">
+          <Component {...pageProps} />
+        </div>
+      </div>
+
+      <div className="text-center mt-4">
+        <p>DEXA - WFH Attendance App @2023</p>
+      </div>
+    </>
+  );
 }
